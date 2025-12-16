@@ -314,7 +314,8 @@ function PaymentSuccessPageContent() {
             
             return updatedBooking;
           });
-          console.log("Updated booking: ", booking);
+          // console.log("Updated booking: ", booking);
+          // setError(null);
         }
       }
     }, 2000); // Check every 2 seconds
@@ -347,6 +348,7 @@ function PaymentSuccessPageContent() {
   // Clear payment retry state when payment is successful
   useEffect(() => {
     if (booking && booking.status === "paid") {
+      setError(null);
       // Clear retry state from sessionStorage
       sessionStorage.removeItem("paymentRetryState");
       console.log("Payment successful, cleared retry state");
