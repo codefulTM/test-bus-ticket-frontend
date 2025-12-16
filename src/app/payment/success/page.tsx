@@ -130,10 +130,13 @@ function PaymentSuccessPageContent() {
           }
           
           setBooking(parsedBookingData);
+
+          console.log("Booking after getting info from session storage:", booking)
         }
 
         // Get real-time booking status from WebSocket
         if (isConnected) {
+          console.log("Bookings: ", bookings)
           const bookingStatus = getBookingStatus(bookingId);
           const paymentStatus = getPaymentStatus(bookingId);
 
