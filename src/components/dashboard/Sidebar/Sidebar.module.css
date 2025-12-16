@@ -1,0 +1,92 @@
+@reference "../../../app/globals.css";
+
+.sidebar {
+  @apply lg:fixed lg:left-0 lg:w-64 bg-sidebar text-sidebar-foreground border-r border-sidebar-border flex flex-col z-40;
+  @apply hidden lg:flex;
+  /* Fixed positioning: below header, above footer, no scroll movement */
+  top: 4rem; /* Below navbar */
+  bottom: 0;
+  height: calc(100vh - 4rem); /* Full height minus navbar */
+  overflow-y: auto; /* Allow sidebar content to scroll if needed */
+}
+
+.sidebarMobile {
+  @apply fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 bg-sidebar text-sidebar-foreground border-r border-sidebar-border flex flex-col backdrop-blur-sm bg-sidebar/95 z-40 lg:hidden;
+  /* Mobile sidebar that slides in */
+}
+
+.logoContainer {
+  @apply p-6 border-b border-sidebar-border;
+}
+
+.logoWrapper {
+  @apply flex items-center gap-3;
+}
+
+.logoIcon {
+  @apply w-8 h-8 bg-sidebar-primary rounded-lg flex items-center justify-center;
+}
+
+.logoIconSvg {
+  @apply w-5 h-5 text-sidebar-primary-foreground;
+}
+
+.logoText {
+  @apply text-sidebar-foreground;
+}
+
+.navigation {
+  @apply flex-1 p-4;
+}
+
+.menuContainer {
+  @apply space-y-1;
+}
+
+.menuItem {
+  @apply flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-colors;
+}
+
+.menuItemContent {
+  @apply flex items-center gap-3 w-full;
+}
+
+.menuItemIcon {
+  @apply w-5 h-5 flex-shrink-0;
+}
+
+.menuItemText {
+  @apply flex-1;
+}
+
+.menuItemActive {
+  @apply bg-sidebar-primary text-sidebar-primary-foreground;
+}
+
+.menuItemInactive {
+  @apply text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground;
+}
+
+.menuItemIconActive {
+  @apply text-sidebar-primary-foreground;
+}
+
+.menuItemIconInactive {
+  @apply text-sidebar-foreground;
+}
+
+.quickActionsContainer {
+  @apply p-4 border-t border-sidebar-border;
+}
+
+.quickActionsButton {
+  @apply w-full bg-primary text-primary-foreground py-2 rounded-lg font-semibold hover:opacity-90 transition-opacity;
+}
+
+.quickActionsIcon {
+  @apply w-4 h-4 inline mr-2;
+}
+
+.footer {
+  @apply p-4 border-t border-sidebar-border;
+}
