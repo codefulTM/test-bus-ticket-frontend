@@ -295,7 +295,7 @@ function PaymentSuccessPageContent() {
                 }
               : null
           );
-          console.log(booking);
+          console.log("Booking: ", booking);
         }
       }
     }, 2000); // Check every 2 seconds
@@ -339,7 +339,7 @@ function PaymentSuccessPageContent() {
     if (!booking && !loading) {
       router.push("/user/bookings");
     }
-    console.log(booking);
+    // console.log(booking);
   }, [booking, loading, router]);
 
   // Download e-ticket
