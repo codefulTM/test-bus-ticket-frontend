@@ -280,10 +280,10 @@ function PaymentSuccessPageContent() {
                   id: tripDataRaw.route?.id || '',
                   name: tripDataRaw.route?.name || '',
                   description: tripDataRaw.route?.description || '',
-                  origin: tripDataRaw.route?.points?.[0]?.name || '',
-                  destination: tripDataRaw.route?.points?.[tripDataRaw.route.points.length - 1]?.name || '',
-                  distanceKm: 0, // Calculate from route points if available
-                  estimatedMinutes: 0, // Calculate from route points if available
+                  origin: (tripDataRaw as any).route?.origin || '',
+                  destination: (tripDataRaw as any).route?.destination || '',
+                  distanceKm: (tripDataRaw as any).route?.distanceKm || 0, // Calculate from route points if available
+                  estimatedMinutes: (tripDataRaw as any).route?.estimatedMinutes || 0, // Calculate from route points if available
                 },
                 bus: tripDataRaw.bus || {
                   id: '',
