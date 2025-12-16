@@ -296,7 +296,7 @@ function PaymentSuccessPageContent() {
               console.error("Error fetching trip data:", tripError);
             }
           }
-          
+          console.log("Trip data:", tripData);
           setBooking((prev: any) => {
               const updatedBooking = {
                 ...prev,
