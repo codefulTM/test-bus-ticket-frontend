@@ -297,26 +297,24 @@ function PaymentSuccessPageContent() {
           }
           
           setBooking((prev: any) => {
-            const updatedBooking = prev
-              ? {
-                  ...prev,
-                  ...realTimeBooking,
-                  trip: tripData || prev.trip,
-                  status:
-                    bookingStatus === BookingStatus.PAID
-                      ? "paid"
-                      : bookingStatus,
-                  bookedAt:
-                    typeof realTimeBooking.bookedAt === "string"
-                      ? realTimeBooking.bookedAt
-                      : realTimeBooking.bookedAt?.toISOString() ||
-                        prev.bookedAt,
-                }
-              : null;
+            const updatedBooking = {
+              ...prev,
+              ...realTimeBooking,
+              trip: tripData || prev.trip,
+              status:
+                bookingStatus === BookingStatus.PAID
+                  ? "paid"
+                  : bookingStatus,
+              bookedAt:
+                typeof realTimeBooking.bookedAt === "string"
+                  ? realTimeBooking.bookedAt
+                  : realTimeBooking.bookedAt?.toISOString() ||
+                    prev.bookedAt,
+            };
             
-            console.log("Updated booking: ", updatedBooking);
             return updatedBooking;
           });
+            // console.log("Updated booking: ", booking);
         }
       }
     }, 2000); // Check every 2 seconds
