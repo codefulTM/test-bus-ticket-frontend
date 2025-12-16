@@ -265,7 +265,7 @@ function PaymentSuccessPageContent() {
           if (!tripData && (realTimeBooking as any).tripId) {
             try {
               const tripDataRaw = await getTripById((realTimeBooking as any).tripId);
-              console.log("Trip data:", tripDataRaw)
+              // console.log("Trip data:", tripDataRaw)
               // Convert Date objects to strings and ensure required properties to match Booking type
               tripData = {
                 ...tripDataRaw,
@@ -298,23 +298,23 @@ function PaymentSuccessPageContent() {
           }
           
           setBooking((prev: any) => {
-            const updatedBooking = {
-              ...prev,
-              ...realTimeBooking,
-              trip: tripData || prev.trip,
-              status:
-                bookingStatus === BookingStatus.PAID
-                  ? "paid"
-                  : bookingStatus,
-              bookedAt:
-                typeof realTimeBooking.bookedAt === "string"
-                  ? realTimeBooking.bookedAt
-                  : realTimeBooking.bookedAt?.toISOString() ||
-                    prev.bookedAt,
-            };
-            
-            return updatedBooking;
-          });
+              const updatedBooking = {
+                ...prev,
+                ...realTimeBooking,
+                trip: tripData,
+                status:
+                  bookingStatus === BookingStatus.PAID
+                    ? "paid"
+                    : bookingStatus,
+                bookedAt:
+                  typeof realTimeBooking.bookedAt === "string"
+                    ? realTimeBooking.bookedAt
+                    : realTimeBooking.bookedAt?.toISOString() ||
+                      prev.bookedAt,
+              };
+              
+              return updatedBooking;
+            });
           console.log("Updated booking: ", booking);
         }
       }
