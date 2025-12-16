@@ -295,6 +295,7 @@ function PaymentSuccessPageContent() {
                 }
               : null
           );
+          console.log(booking);
         }
       }
     }, 2000); // Check every 2 seconds
