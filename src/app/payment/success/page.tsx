@@ -259,6 +259,7 @@ function PaymentSuccessPageContent() {
 
       if (bookingStatus && bookings.has(bookingId)) {
         const realTimeBooking = bookings.get(bookingId);
+        console.log("Real time booking: ", realTimeBooking)
         if (realTimeBooking) {
           // Fetch trip data if not already present
           let tripData = booking?.trip;
