@@ -101,11 +101,17 @@ function PaymentSuccessPageContent() {
           if (parsedBookingData.tripId) {
             try {
               const tripData = await getTripById(parsedBookingData.tripId);
+              console.log("Raw trip data:", tripData);
+              
               // Convert Date objects to strings and ensure required properties to match Booking type
               const formattedTripData = {
                 ...tripData,
-                departureTime: tripData.departureTime.toISOString(),
-                arrivalTime: tripData.arrivalTime.toISOString(),
+                departureTime: tripData.departureTime instanceof Date 
+                  ? tripData.departureTime.toISOString() 
+                  : new Date(tripData.departureTime).toISOString(),
+                arrivalTime: tripData.arrivalTime instanceof Date 
+                  ? tripData.arrivalTime.toISOString() 
+                  : new Date(tripData.arrivalTime).toISOString(),
                 status: tripData.status.toString(),
                 route: {
                   id: tripData.route?.id || '',
@@ -166,8 +172,12 @@ function PaymentSuccessPageContent() {
                   // Convert Date objects to strings and ensure required properties to match Booking type
                   tripData = {
                     ...tripDataRaw,
-                    departureTime: tripDataRaw.departureTime.toISOString(),
-                    arrivalTime: tripDataRaw.arrivalTime.toISOString(),
+                    departureTime: tripDataRaw.departureTime instanceof Date 
+                      ? tripDataRaw.departureTime.toISOString() 
+                      : new Date(tripDataRaw.departureTime).toISOString(),
+                    arrivalTime: tripDataRaw.arrivalTime instanceof Date 
+                      ? tripDataRaw.arrivalTime.toISOString() 
+                      : new Date(tripDataRaw.arrivalTime).toISOString(),
                     status: tripDataRaw.status.toString(),
                     route: {
                       id: tripDataRaw.route?.id || '',
@@ -257,8 +267,12 @@ function PaymentSuccessPageContent() {
               // Convert Date objects to strings and ensure required properties to match Booking type
               tripData = {
                 ...tripDataRaw,
-                departureTime: tripDataRaw.departureTime.toISOString(),
-                arrivalTime: tripDataRaw.arrivalTime.toISOString(),
+                departureTime: tripDataRaw.departureTime instanceof Date 
+                  ? tripDataRaw.departureTime.toISOString() 
+                  : new Date(tripDataRaw.departureTime).toISOString(),
+                arrivalTime: tripDataRaw.arrivalTime instanceof Date 
+                  ? tripDataRaw.arrivalTime.toISOString() 
+                  : new Date(tripDataRaw.arrivalTime).toISOString(),
                 status: tripDataRaw.status.toString(),
                 route: {
                   id: tripDataRaw.route?.id || '',
@@ -360,7 +374,7 @@ Route: ${booking.trip?.route?.origin} → ${booking.trip?.route?.destination}
 Date: ${booking.trip?.departureTime ? format(new Date(booking.trip.departureTime), "PPP") : "N/A"}
 Time: ${booking.trip?.departureTime ? format(new Date(booking.trip.departureTime), "p") : "N/A"}
 Bus: ${booking.trip?.bus?.plateNumber || "N/A"}
-Passengers: ${booking.passengers?.map((p) => `${p.fullName} (Seat ${p.seatCode})`).join(", ")}
+Passengers: ${booking.passengers?.map((p: any) => `${p.fullName} (Seat ${p.seatCode})`).join(", ")}
 Total Amount: ${formatCurrency(booking.totalAmount)}
 Booked At: ${format(new Date(booking.bookedAt), "PPp")}
 
