@@ -91,6 +91,7 @@ function PaymentSuccessPageContent() {
 
         // Get booking data from session storage first for initial display
         const bookingData = sessionStorage.getItem("bookingData");
+        console.log("Booking data from session: ", bookingData);
         let parsedBookingData = null;
         
         if (bookingData) {
@@ -131,7 +132,7 @@ function PaymentSuccessPageContent() {
           
           setBooking(parsedBookingData);
 
-          console.log("Booking after getting info from session storage:", booking)
+          // console.log("Booking after getting info from session storage:", booking)
         }
 
         // Get real-time booking status from WebSocket
