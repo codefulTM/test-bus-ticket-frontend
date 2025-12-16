@@ -143,7 +143,7 @@ function PaymentSuccessPageContent() {
 
         // Get real-time booking status from WebSocket
         if (isConnected) {
-          console.log("Bookings: ", bookings)
+          // console.log("Bookings: ", bookings)
           const bookingStatus = getBookingStatus(bookingId);
           const paymentStatus = getPaymentStatus(bookingId);
 
@@ -254,6 +254,7 @@ function PaymentSuccessPageContent() {
     // Listen for booking updates in real-time
     const interval = setInterval(async () => {
       const bookingStatus = getBookingStatus(bookingId);
+      console.log("Booking status: ", bookingStatus);
       const paymentStatus = getPaymentStatus(bookingId);
 
       if (bookingStatus && bookings.has(bookingId)) {
@@ -295,8 +296,8 @@ function PaymentSuccessPageContent() {
             }
           }
           
-          setBooking((prev: any) =>
-            prev
+          setBooking((prev: any) => {
+            const updatedBooking = prev
               ? {
                   ...prev,
                   ...realTimeBooking,
@@ -311,9 +312,11 @@ function PaymentSuccessPageContent() {
                       : realTimeBooking.bookedAt?.toISOString() ||
                         prev.bookedAt,
                 }
-              : null
-          );
-          console.log("Booking: ", booking);
+              : null;
+            
+            console.log("Updated booking: ", updatedBooking);
+            return updatedBooking;
+          });
         }
       }
     }, 2000); // Check every 2 seconds
